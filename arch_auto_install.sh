@@ -90,19 +90,24 @@ PACMAN_PACKAGES=(
         zsh
         )    
 ### Desktop packages #####
-#HYPRLAND_PACKAGES=(
-#        hyprpolkitagent
-#        kwalletmanager
-#        kwallet-pam
-#        waybar
+HYPRLAND_PACKAGES=(
+        hyprpolkitagent
+        kwalletmanager
+        kwallet-pam
+        waybar
+)
+# Commenting out XFCE packages as per your DEMAND
+#GUI_PACKAGES=(
+#        xfce4
+#        xfce4-terminal
+#        xfce4-goodies
+#        sddm
+#        nm-connection-editor
+#        mousepad
 #        )
-GUI_PACKAGES=(
-        xfce4
-        xfce4-terminal
-        xfce4-goodies
+GUI_PACKAGES=("${HYPRLAND_PACKAGES[@]}" # Assigning Hyprland packages
         sddm
         nm-connection-editor
-        mousepad
         )
 #GUI_PACKAGES=(
 #         plasma 

@@ -2,11 +2,12 @@
 
 This script automates the installation of Arch Linux on a target machine. It includes features like full-disk encryption with LUKS, BTRFS filesystem with subvolumes, GRUB bootloader, Secure Boot setup with `sbctl`, automatic user creation, and installation of a predefined set of packages including a desktop environment.
 
-**Current default GUI:** XFCE (with SDDM)
+**Current default GUI:** Hyprland (with SDDM)
 
 ## ⚠️ Important Warning ⚠️
 
-*   **THIS SCRIPT WILL WIPE THE TARGET DISK (`/dev/sda` by default).**
+*   **THIS SCRIPT WILL WIPE THE TARGET DISK (`/dev/nvme0n1` by default).**
+*   **The script currently defaults to `/dev/nvme0n1`. Double-check the `TARGET` variable!**
 *   **USE WITH EXTREME CAUTION.** There is no undo.
 *   **Review and understand the entire script thoroughly before running it.** You are responsible for what it does to your system.
 *   **Backup any important data from the target machine before proceeding.**
@@ -26,7 +27,7 @@ This script automates the installation of Arch Linux on a target machine. It inc
 *   **Filesystem:**
     *   VFAT (FAT32) for the EFI partition.
     *   BTRFS for the encrypted root partition.
-    *   Creates BTRFS subvolumes: `@` (root), `@home`, `@opt`, `@srv`, `@var/cache`, `@var/lib/libvirt/images`, `@var/log`, `@var/spool`, `@var/tmp`.
+    *   Creates BTRFS subvolumes: `@` (root), `@home`, `@var/cache`, `@var/lib/libvirt/images`, `@var/log`, `@var/log/audit`, `@var/spool`, `@var/tmp`.
 *   **Base System Installation:**
     *   Uses `reflector` to select fast UK mirrors.
     *   Installs base system and essential packages (`base`, `linux`, `linux-firmware`, `btrfs-progs`, `cryptsetup`, `grub`, etc.) via `pacstrap`.
@@ -45,7 +46,7 @@ This script automates the installation of Arch Linux on a target machine. It inc
     *   Configures `pacman.conf` (enables Color, CheckSpace, VerbosePkgLists, ParallelDownloads, multilib repository).
 *   **Package Installation:**
     *   Installs a curated list of CLI tools and utilities.
-    *   Installs GUI packages (defaulting to XFCE and SDDM).
+    *   Installs GUI packages (defaulting to Hyprland and SDDM).
     *   Installs `yay` as an AUR helper.
     *   Installs `oh-my-zsh-git` via `yay`.
 *   **Services:**
@@ -67,11 +68,11 @@ This script automates the installation of Arch Linux on a target machine. It inc
 Before running the script, you **MUST** review and customize the configuration variables at the beginning of `arch_auto_install.sh`:
 
 *   `TARGET="/dev/nvme0n1"`: **CRITICAL!** Set this to your target disk (e.g., `/dev/nvme0n1`, `/dev/sdb`).
-*   `LOCALE="en_US.UTF-8"`: System locale.
+*   `LOCALE="en_US.UTF-8"`: System locale. (Default: `en_US.UTF-8`)
 *   `KEYMAP="us"`: Default console keymap.
-*   `TIMEZONE="Europe/Amsterdam"`: System timezone.
-*   `HOSTNAME="arch"`: Desired hostname for the system.
-*   `USERNAME="user"`: Username for the default user.
+*   `TIMEZONE="Europe/Amsterdam"`: System timezone. (Default: `Europe/Amsterdam`)
+*   `HOSTNAME="arch"`: Desired hostname for the system. (Default: `arch`)
+*   `USERNAME="rroethof"`: Username for the default user. (Default: `rroethof`)
 *   `USER_PASSWORD="\$6\$..."`: SHA512 hash of the password for `USERNAME`.
     *   To generate a new hash, install `whois` (which provides `mkpasswd`) on a Linux system and run: `mkpasswd -m sha-512`
     *   **Important:** If your generated hash contains `$` symbols, you **must** escape them with a backslash (`\`) in the script (e.g., `\$`).
@@ -80,7 +81,7 @@ Before running the script, you **MUST** review and customize the configuration v
 *   `CRYPT_PASSWORD="changeme"`: Plaintext disk encryption password if `BAD_IDEA="yes"`.
 *   `PACSTRAP_PACKAGES=(...)`: Array of packages for the base installation.
 *   `PACMAN_PACKAGES=(...)`: Array of additional packages to install via `pacman` after `pacstrap`.
-*   `GUI_PACKAGES=(...)`: Array of packages for the graphical user interface. You can switch between XFCE (default) and Plasma (commented out) or add your own.
+*   `GUI_PACKAGES=(...)`: Array of packages for the graphical user interface. Currently defaults to Hyprland.
 
 ## Usage
 
