@@ -176,7 +176,7 @@ echo
 
 # update pacman mirrors and then pacstrap base install
 echo "Pacstrapping..."
-reflector --country GNL --age 24 --protocol https --sort rate --save "/etc/pacman.d/mirrorlist"
+reflector --country NL --age 24 --protocol https --sort rate --save "/etc/pacman.d/mirrorlist"
 pacstrap -K "${ROOT_MNT}" "${PACSTRAP_PACKAGES[@]}" 
 echo
 
