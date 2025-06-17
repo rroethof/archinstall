@@ -96,26 +96,11 @@ HYPRLAND_PACKAGES=(
         kwallet-pam
         waybar
 )
-# Commenting out XFCE packages as per your DEMAND
-#GUI_PACKAGES=(
-#        xfce4
-#        xfce4-terminal
-#        xfce4-goodies
-#        sddm
-#        nm-connection-editor
-#        mousepad
-#        )
+
 GUI_PACKAGES=("${HYPRLAND_PACKAGES[@]}" # Assigning Hyprland packages
         sddm
         nm-connection-editor
         )
-#GUI_PACKAGES=(
-#         plasma 
-#         sddm 
-#         kitty
-#         nm-connection-editor
-#         mousepad
-#        )
 
 # set locale, timezone, NTP
 loadkeys "${KEYMAP}"
@@ -144,7 +129,7 @@ if [[ "${BAD_IDEA}" == "yes" ]]; then
     echo -n "${CRYPT_PASSWORD}" | cryptsetup luksFormat --type luks2 "/dev/disk/by-partlabel/linux" -
     echo -n "${CRYPT_PASSWORD}" | cryptsetup luksOpen "/dev/disk/by-partlabel/linux" root -
 else
-    cryptsetup luksFormat --type luks2 "/dev/disk/by-partlabel/linux"w
+    cryptsetup luksFormat --type luks2 "/dev/disk/by-partlabel/linux"
     cryptsetup luksOpen "/dev/disk/by-partlabel/linux" root
 fi
 echo
@@ -191,7 +176,7 @@ echo
 
 # update pacman mirrors and then pacstrap base install
 echo "Pacstrapping..."
-reflector --country GB --age 24 --protocol http,https --sort rate --save "/etc/pacman.d/mirrorlist"
+reflector --country GNL --age 24 --protocol https --sort rate --save "/etc/pacman.d/mirrorlist"
 pacstrap -K "${ROOT_MNT}" "${PACSTRAP_PACKAGES[@]}" 
 echo
 
@@ -261,6 +246,11 @@ sed -i \
     -e '/^#VerbosePkgLists/s/^#//' \
     "${ROOT_MNT}/etc/pacman.conf"
 echo
+# initialize pacman keys and populate them with the Arch Linux keyring
+echo "Adding pacman keys..."
+arch-chroot "${ROOT_MNT}" pacman-key --init
+echo "Populating pacman keys..."
+arch-chroot "${ROOT_MNT}" pacman-key --populate archlinux
 
 echo "Installing base packages..."
 arch-chroot "${ROOT_MNT}" pacman -Sy "${PACMAN_PACKAGES[@]}" --noconfirm --quiet
