@@ -347,6 +347,27 @@ echo
 # ZRAM / Swap setup
 # ...
 
+
+# Voeg dit toe vóór de "Install complete" boodschap in je script:
+
+JAKOOLIT_SCRIPT_NAME="run_jakoolit_hyprland_setup.sh"
+JAKOOLIT_SCRIPT_URL="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh"
+USER_HOME_IN_CHROOT="/home/${USERNAME}"
+
+echo "Downloading JaKooLit Hyprland setup script to ${USER_HOME_IN_CHROOT}/${JAKOOLIT_SCRIPT_NAME} for post-boot execution..."
+arch-chroot "${ROOT_MNT}" sudo -u "${USERNAME}" curl -L "${JAKOOLIT_SCRIPT_URL}" -o "${USER_HOME_IN_CHROOT}/${JAKOOLIT_SCRIPT_NAME}"
+arch-chroot "${ROOT_MNT}" sudo -u "${USERNAME}" chmod +x "${USER_HOME_IN_CHROOT}/${JAKOOLIT_SCRIPT_NAME}"
+
+# Pas je "Install complete" boodschap aan om de instructie op te nemen:
+echo "--------------------------------------------------------------------------"
+echo "- Install complete."
+echo "- IMPORTANT: To complete the Hyprland customization by JaKooLit,"
+echo "- after rebooting and logging in as '${USERNAME}', please open a terminal and run:"
+echo "    sh ~/${JAKOOLIT_SCRIPT_NAME}"
+echo "- Please reboot now."
+echo "--------------------------------------------------------------------------"
+
+
 echo "-----------------------------------"
 echo "- Install complete. Please reboot -"
 echo "-----------------------------------"
