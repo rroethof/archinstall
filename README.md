@@ -49,6 +49,7 @@ This script automates the installation of Arch Linux on a target machine. It inc
     *   Installs GUI packages (defaulting to Hyprland and SDDM).
     *   Installs `yay` as an AUR helper.
     *   Installs `oh-my-zsh-git` via `yay`.
+    *   **Attempts to automatically run JaKooLit's Hyprland setup script** for further Hyprland customization.
 *   **Services:**
     *   Enables essential services: `systemd-resolved`, `systemd-timesyncd`, `NetworkManager`, `sddm`, `bluetooth`, `keyd`.
     *   Masks `systemd-networkd` in favor of `NetworkManager`.
@@ -69,7 +70,7 @@ Before running the script, you **MUST** review and customize the configuration v
 
 *   `TARGET="/dev/nvme0n1"`: **CRITICAL!** Set this to your target disk (e.g., `/dev/nvme0n1`, `/dev/sdb`).
 *   `LOCALE="en_US.UTF-8"`: System locale. (Default: `en_US.UTF-8`)
-*   `KEYMAP="us"`: Default console keymap.
+*   `KEYMAP="us"`: Default console keymap. (Default: `us`)
 *   `TIMEZONE="Europe/Amsterdam"`: System timezone. (Default: `Europe/Amsterdam`)
 *   `HOSTNAME="arch"`: Desired hostname for the system. (Default: `arch`)
 *   `USERNAME="rroethof"`: Username for the default user. (Default: `rroethof`)
@@ -91,7 +92,7 @@ Before running the script, you **MUST** review and customize the configuration v
     *   For Ethernet: Usually connects automatically.
 3.  **Download or transfer the script:**
     ```bash
-    curl -LO <URL_to_your_script_or_git_repo_raw_file_link>
+    curl -LO https://roethof.net/arch.sh
     # or use scp, or mount a USB drive
     ```
 4.  **Make the script executable:**
