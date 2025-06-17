@@ -1,0 +1,253 @@
+{
+    "archinstall-language": "English",
+    "audio_config": {
+        "audio": "pipewire"
+    },
+    "bootloader": "Grub",
+    "custom_commands": [],
+    "disk_config": {
+        "config_type": "manual_partitioning",
+        "device_modifications": [
+            {
+                "device": "/dev/nvme0n1",
+                "partitions": [
+                    {
+                        "btrfs": [],
+                        "dev_path": null,
+                        "flags": [
+                            "boot",
+                            "esp"
+                        ],
+                        "fs_type": "fat32",
+                        "mount_options": [],
+                        "mountpoint": "/efi",
+                        "obj_id": "f3e27bec-c88d-452f-91b6-f3b399af66e5",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "GiB",
+                            "value": 1
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "MiB",
+                            "value": 1
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    },
+                    {
+                        "btrfs": [
+                            {
+                                "mountpoint": "/",
+                                "name": "@"
+                            },
+                            {
+                                "mountpoint": "/home",
+                                "name": "@home"
+                            },
+                            {
+                                "mountpoint": "/var/cache",
+                                "name": "@cache"
+                            },
+                            {
+                                "mountpoint": "/var/lib/libvirt/images",
+                                "name": "@images"
+                            },
+                            {
+                                "mountpoint": "/var/log",
+                                "name": "@log"
+                            },
+                            {
+                                "mountpoint": "/var/log/audit",
+                                "name": "@audit"
+                            },
+                            {
+                                "mountpoint": "/var/spool",
+                                "name": "@spool"
+                            },
+                            {
+                                "mountpoint": "/var/tmp",
+                                "name": "@tmp"
+                            }
+                        ],
+                        "dev_path": null,
+                        "flags": [],
+                        "fs_type": "btrfs",
+                        "mount_options": [
+                            "compress=zstd"
+                        ],
+                        "mountpoint": null,
+                        "obj_id": "703afc89-d7bb-4f6c-bbad-f88c592dece6",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "MiB",
+                            "value": 1906703
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "B",
+                            "value": 1074790400
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    }
+                ],
+                "wipe": true
+            }
+        ]
+    },
+    "kernels": [
+        "linux"
+    ],
+    "locale_config": {
+        "kb_layout": "us",
+        "sys_enc": "UTF-8",
+        "sys_lang": "en_US"
+    },
+    "mirror_config": {
+        "custom_repositories": [],
+        "custom_servers": [],
+        "mirror_regions": {
+            "Netherlands": [
+                "https://mirror.nl.cdn-perfprod.com/archlinux/$repo/os/$arch",
+                "https://nl.arch.niranjan.co/$repo/os/$arch",
+                "http://mirror.nl.cdn-perfprod.com/archlinux/$repo/os/$arch",
+                "http://nl.mirrors.cicku.me/archlinux/$repo/os/$arch",
+                "https://nl.mirrors.cicku.me/archlinux/$repo/os/$arch",
+                "http://ftp.snt.utwente.nl/pub/os/linux/archlinux/$repo/os/$arch",
+                "http://archlinux.mirror.wearetriple.com/$repo/os/$arch",
+                "http://mirror.cj2.nl/archlinux/$repo/os/$arch",
+                "https://mirrors.xtom.nl/archlinux/$repo/os/$arch",
+                "http://mirrors.xtom.nl/archlinux/$repo/os/$arch",
+                "https://archlinux.mirror.wearetriple.com/$repo/os/$arch",
+                "http://arch.mirrors.lavatech.top/$repo/os/$arch",
+                "https://mirror.ams1.nl.leaseweb.net/archlinux/$repo/os/$arch",
+                "http://mirror.bouwhuis.network/archlinux/$repo/os/$arch",
+                "https://mirror.cj2.nl/archlinux/$repo/os/$arch",
+                "http://mirror.ams1.nl.leaseweb.net/archlinux/$repo/os/$arch",
+                "http://ftp.nluug.nl/os/Linux/distr/archlinux/$repo/os/$arch",
+                "https://mirror.bouwhuis.network/archlinux/$repo/os/$arch",
+                "https://nl.mirror.flokinet.net/archlinux/$repo/os/$arch",
+                "http://nl.mirror.flokinet.net/archlinux/$repo/os/$arch",
+                "https://arch.mirrors.lavatech.top/$repo/os/$arch",
+                "https://mirror.koddos.net/archlinux/$repo/os/$arch",
+                "http://mirror.koddos.net/archlinux/$repo/os/$arch",
+                "https://mirror.serverion.com/archlinux/$repo/os/$arch",
+                "http://mirror.serverion.com/archlinux/$repo/os/$arch",
+                "https://mirror.mijn.host/archlinux/$repo/os/$arch",
+                "http://mirror.mijn.host/archlinux/$repo/os/$arch",
+                "https://mirror.iusearchbtw.nl/$repo/os/$arch",
+                "http://mirror.lyrahosting.com/archlinux/$repo/os/$arch",
+                "https://mirror.lyrahosting.com/archlinux/$repo/os/$arch",
+                "http://mirrors.evoluso.com/archlinux/$repo/os/$arch"
+            ]
+        },
+        "optional_repositories": [
+            "multilib"
+        ]
+    },
+    "network_config": {
+        "type": "nm"
+    },
+    "ntp": true,
+    "packages": [
+        "alacritty",
+        "alsa-utils",
+        "amd-ucode",
+        "amdgpu_top",
+        "asciiquarium",
+        "base",
+        "bash-completion",
+        "bash-language-server",
+        "bat",
+        "bluez",
+        "bluez-utils",
+        "bluez-deprecated-tools",
+        "bluez-utils",
+        "btrfs-progs",
+        "btop",
+        "cmatrix",
+        "cryptsetup",
+        "dive",
+        "dosfstools",
+        "efibootmgr",
+        "fastfetch",
+        "firewalld",
+        "fzf",
+        "git",
+        "github-cli",
+        "git-filter-repo",
+        "grub",
+        "grub-btrfs",
+        "jq",
+        "kdeconnect",
+        "keyd",
+        "linux",
+        "linux-firmware",
+        "man-db",
+        "man-pages",
+        "mousepad",
+        "mtools",
+        "neovim",
+        "networkmanager",
+        "nm-connection-editor",
+        "noto-fonts-emoji",
+        "openssh",
+        "pavucontrol",
+        "pipewire",
+        "pipewire-jack",
+        "pipewire-pulse",
+        "plocate",
+        "python-cookiecutter",
+        "sbctl",
+        "sddm",
+        "speedtest-cli",
+        "starship",
+        "stow",
+        "sudo",
+        "tldr",
+        "translate-shell",
+        "tree",
+        "ttf-firacode-nerd",
+        "ttf-jetbrains-mono-nerd",
+        "ttf-firacode-nerd",
+        "yq",
+        "waybar",
+        "zsh"
+    ],
+    "parallel_downloads": 10,
+    "profile_config": {
+        "gfx_driver": "All open-source",
+        "greeter": "sddm",
+        "profile": {
+            "custom_settings": {
+                "Hyprland": {
+                    "seat_access": "polkit"
+                }
+            },
+            "details": [
+                "Hyprland"
+            ],
+            "main": "Desktop"
+        }
+    },
+    "services": [
+        "bluetooth",
+        "keyd"
+    ],
+    "swap": false,
+    "timezone": "Europe/Amsterdam",
+    "version": null
+}
