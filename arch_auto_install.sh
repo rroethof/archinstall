@@ -57,6 +57,8 @@ PACMAN_PACKAGES=(
         btop
         cmatrix
         dive
+        debugedit
+        fakeroot
         fastfetch
         firewalld
         fzf
